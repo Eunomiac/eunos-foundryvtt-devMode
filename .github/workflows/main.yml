@@ -41,7 +41,7 @@ jobs:
 
       # create a zip file with all files required by the module to add to the release
       - name: Zip Files
-        run: zip -r ./module.zip module.json LICENSE foundryvtt-devMode.mjs foundryvtt-devMode.css module/ templates/ lang/
+        run: zip -r ./module.zip module.json LICENSE eunos-foundryvtt-devMode.mjs eunos-foundryvtt-devMode.css module/ templates/ lang/
 
       # Create a release for this specific version
       - name: Update Release with Files

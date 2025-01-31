@@ -7,7 +7,7 @@ const sass = require('gulp-dart-sass');
 /*  CONFIGURATION   */
 /********************/
 
-const name = 'foundryvtt-devMode';
+const name = 'eunos-foundryvtt-devMode';
 const sourceDirectory = '.';
 const distDirectory = './';
 const stylesDirectory = `${sourceDirectory}/styles`;
@@ -31,7 +31,7 @@ function buildStyles() {
  * Watch for changes for each build step
  */
 function buildWatch() {
-  gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, { ignoreInitial: false }, buildStyles);
+  gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, {ignoreInitial: false}, buildStyles);
 }
 
 /********************/

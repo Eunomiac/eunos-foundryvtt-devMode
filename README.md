@@ -25,14 +25,14 @@ Empower developers with commonly sought-after QOL features.
 ## TODO
 
 1. Leverage the potential future `CONFIG.debug.moduleDebug` flag.
-1. Implement other developer tooling. Have an idea? [Leave a suggestion!](https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/issues/new?assignees=&labels=enhancement%2C+suggestion&template=feature_request.md&title=)
+1. Implement other developer tooling. Have an idea? [Leave a suggestion!](https://github.com/Eunomiac/eunos-foundryvtt-devMode/issues/new?assignees=&labels=enhancement%2C+suggestion&template=feature_request.md&title=)
 
 ## Installation
 
 Module JSON:
 
 ```
-https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/releases/latest/download/module.json
+https://github.com/Eunomiac/eunos-foundryvtt-devMode/releases/latest/download/module.json
 ```
 
 ## Configuration
