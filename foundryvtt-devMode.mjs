@@ -1,13 +1,10 @@
-import { DevMode } from './module/classes/DevMode.mjs';
-import { DevModeConfig } from './module/classes/DevModeConfig.mjs';
-import { DevModeSettings } from './module/classes/DevModeSettings.mjs';
+import {DevMode} from './module/classes/DevMode.mjs';
+import {DevModeConfig} from './module/classes/DevModeConfig.mjs';
+import {DevModeSettings} from './module/classes/DevModeSettings.mjs';
 import setupApplicationHeaderPrintButton from './module/hooks/app-header-buttons.mjs';
 import setupDevModeAnchor from './module/hooks/dev-mode-anchor.mjs';
-import { inspectSystemTemplate } from './module/hooks/inspect-template.mjs';
-import { setupJSONDiff } from './module/hooks/json-changes.mjs';
-import { _devModeDisplayUsabilityErrors } from './module/patches/displayUsabilityErrors.mjs';
-import setupDisableTemplateCache from './module/patches/getTemplate.mjs';
-import { libWrapper } from './module/shim.mjs';
+import {inspectSystemTemplate} from './module/hooks/inspect-template.mjs';
+import {setupJSONDiff} from './module/hooks/json-changes.mjs';
 import autoOpenDocuments from "./module/hooks/auto-open-documents.mjs";
 
 Handlebars.registerHelper('dev-concat', (...args) => {
@@ -45,21 +42,11 @@ Hooks.once('init', function () {
     devModeConfig.render(true);
   });
 
-  libWrapper.register(
-    DevMode.MODULE_ID,
-    'Game.prototype._displayUsabilityErrors',
-    _devModeDisplayUsabilityErrors,
-    'MIXED',
-  );
-
-  if (game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.disableTemplateCache)) {
-    setupDisableTemplateCache();
-  }
-
   setupDevModeAnchor();
 });
 
 Hooks.on('ready', () => {
+
   if (game.paused && game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.alwaysUnpause)) {
     game.togglePause(false);
   }
@@ -71,6 +58,6 @@ Hooks.on('ready', () => {
   setupApplicationHeaderPrintButton();
 
   // If Vueport is enabled, it needs a little bit to be ready to render a sheet
-  if ( game.modules.get("vueport")?.active ) setTimeout(autoOpenDocuments, 1000);
+  if (game.modules.get("vueport")?.active) setTimeout(autoOpenDocuments, 1000);
   else autoOpenDocuments();
 });
