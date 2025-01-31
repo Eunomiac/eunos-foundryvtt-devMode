@@ -183,7 +183,7 @@ export class DevModeConfig extends FormApplication {
       packageSpecificDebugFormData,
       debugOverrideFormData,
       overrideConfigDebug: game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.overrideConfigDebug),
-      actorTypes: game.system.template.Actor.types.reduce((types, type) => {
+      actorTypes: Object.keys(game.system.documentTypes.Actor).reduce((types, type) => {
         types[type] = `ACTOR.Type${type.capitalize()}`;
         return types;
       }, {}),

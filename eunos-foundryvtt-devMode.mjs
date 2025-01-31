@@ -56,7 +56,7 @@ Hooks.on('ready', () => {
 
   setupJSONDiff();
 
-  inspectSystemTemplate();
+  // inspectSystemTemplate(); // TODO: Still needs some work to be updated to v12
 
   setupApplicationHeaderPrintButton();
 

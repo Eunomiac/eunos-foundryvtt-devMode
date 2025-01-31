@@ -18,7 +18,7 @@ export class DevModePerformance {
   }
 
   static actorCRUDTest = async ({ type, iterations = 1000 } = {}) => {
-    if (!game.system.template.Actor.types.includes(type)) return console.error(type, "is invalid actor type");
+    if (!(type in game.system.documentTypes.Actor)) return console.error(type, "is invalid actor type");
     console.log(`Running CRUD test on "${type}" type with ${iterations} iterations`);
     const debugConfig = { ...CONFIG.debug };
     this.resetDebug();
