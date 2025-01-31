@@ -29,8 +29,8 @@ export class DevMode {
     showCompendiumIds: 'show-compendium-ids',
     appHeaderButton: 'app-header-button',
     showChatIds: 'show-chat-ids',
-    jsonDiffSystem: 'json-diff-system',
-    jsonDiffModules: 'json-diff-modules',
+    // jsonDiffSystem: 'json-diff-system',
+    // jsonDiffModules: 'json-diff-modules',
     // inspectTemplate: 'inspect-system-template',
     autoOpenDocuments: 'auto-open-documents'
   };

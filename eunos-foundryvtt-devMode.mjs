@@ -54,7 +54,7 @@ Hooks.on('ready', () => {
     game.togglePause(false);
   }
 
-  setupJSONDiff();
+  setupJSONDiff(); // TODO: Still needs some work to be updated to v12
 
   // inspectSystemTemplate(); // TODO: Still needs some work to be updated to v12
 
