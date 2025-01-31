@@ -4,7 +4,7 @@ import { DevModeSettings } from './module/classes/DevModeSettings.mjs';
 import setupApplicationHeaderPrintButton from './module/hooks/app-header-buttons.mjs';
 import setupDevModeAnchor from './module/hooks/dev-mode-anchor.mjs';
 // import { inspectSystemTemplate } from './module/hooks/inspect-template.mjs';
-import { setupJSONDiff } from './module/hooks/json-changes.mjs';
+// import { setupJSONDiff } from './module/hooks/json-changes.mjs';
 import autoOpenDocuments from './module/hooks/auto-open-documents.mjs';
 import {
   setupHideNotificationsSettings,
@@ -57,7 +57,7 @@ Hooks.on('ready', () => {
     game.togglePause(false);
   }
 
-  setupJSONDiff(); // TODO: Still needs some work to be updated to v12
+  // setupJSONDiff(); // TODO: Still needs some work to be updated to v12
 
   // inspectSystemTemplate(); // TODO: Still needs some work to be updated to v12
 
