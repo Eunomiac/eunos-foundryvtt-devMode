@@ -118,3 +118,6 @@
     }
   }
 }
+
+/* class added to hidden notifications to prevent them from appearing */
+#notifications .do-not-display { visibility: hidden;}

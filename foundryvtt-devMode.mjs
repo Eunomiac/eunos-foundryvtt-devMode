@@ -6,6 +6,7 @@ import setupDevModeAnchor from './module/hooks/dev-mode-anchor.mjs';
 import {inspectSystemTemplate} from './module/hooks/inspect-template.mjs';
 import {setupJSONDiff} from './module/hooks/json-changes.mjs';
 import autoOpenDocuments from "./module/hooks/auto-open-documents.mjs";
+import {setupHideNotificationsSettings, setupHideNotificationsProxy} from "./module/hooks/hide-notifications-proxy.mjs";
 
 Handlebars.registerHelper('dev-concat', (...args) => {
   DevMode.log(false, args);
@@ -23,6 +24,7 @@ Hooks.once('init', function () {
   DevMode.log(true, `Initializing ${DevMode.MODULE_ID}`);
 
   DevModeSettings.registerSettings();
+  setupHideNotificationsSettings();
 
   DevMode.registerPackageDebugFlag(DevMode.MODULE_ID, 'boolean');
 
@@ -46,6 +48,7 @@ Hooks.once('init', function () {
 });
 
 Hooks.on('ready', () => {
+  setupHideNotificationsProxy();
 
   if (game.paused && game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.alwaysUnpause)) {
     game.togglePause(false);
