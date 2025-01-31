@@ -1,26 +1,33 @@
 {
-  "name": "_dev-mode",
-  "title": "🧙 Developer Mode",
+  "id": "_eunos-dev-mode",
+  "title": "🧙 Euno's Developer Mode",
   "description": "Enables developers to do developer things without affecting non-developers.",
-  "author": "Andrew Krigline (akrigline)",
+  "version": "1.2.0",
+  "compatibility": {
+    "minimum": "9",
+    "verified": "12"
+  },
   "authors": [
     {
       "name": "Andrew Krigline",
       "discord": "Calego#0914",
       "url": "https://github.com/ElfFriend-DnD",
       "patreon": "https://www.patreon.com/ElfFriend_DnD"
+    },
+    {
+      "name": "Ryan West",
+      "url": "https://github.com/Eunomiac",
+      "email": "ryan.o.west@gmail.com",
+      "discord": "Eunomiac#8172"
     }
   ],
-  "url": "https://github.com/League-of-Foundry-Developers/foundryvtt-devMode",
-  "readme": "https://raw.githubusercontent.com/League-of-Foundry-Developers/foundryvtt-devMode/main/README.md",
-  "bugs": "https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/issues",
-  "changelog": "https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/releases",
+  "url": "https://github.com/Eunomiac/eunos-foundryvtt-devMode",
+  "readme": "https://raw.githubusercontent.com/Eunomiac/eunos-foundryvtt-devMode/main/README.md",
+  "bugs": "https://github.com/Eunomiac/eunos-foundryvtt-devMode/issues",
+  "changelog": "https://github.com/Eunomiac/eunos-foundryvtt-devMode/releases",
   "flags": {
     "allowBugReporter": true
   },
-  "version": "1.13.0",
-  "minimumCoreVersion": "9",
-  "compatibleCoreVersion": "10",
   "scripts": [],
   "esmodules": ["foundryvtt-devMode.mjs"],
   "styles": ["foundryvtt-devMode.css"],
@@ -32,11 +39,9 @@
     }
   ],
   "packs": [],
-  "system": [],
-  "dependencies": [],
   "socket": false,
-  "manifest": "https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/releases/latest/download/module.json",
-  "download": "https://github.com/League-of-Foundry-Developers/foundryvtt-devMode/releases/download/v1.3.0/module.zip",
+  "manifest": "https://github.com/Eunomiac/eunos-foundryvtt-devMode/releases/latest/download/module.json",
+  "download": "https://github.com/Eunomiac/eunos-foundryvtt-devMode/releases/download/v1.2.0/module.zip",
   "protected": false,
   "coreTranslation": false,
   "library": true
