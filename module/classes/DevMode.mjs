@@ -1,4 +1,4 @@
-import { DevModePerformance } from './DevModePerformance.mjs';
+import {DevModePerformance} from './DevModePerformance.mjs';
 
 export class DevMode {
   static API = {
@@ -143,11 +143,11 @@ export class DevMode {
 
       const newEntry = {
         [packageName]: {
-          [kind]: { packageName, kind, value: defaultValue, choiceLabelOverrides: options?.choiceLabelOverrides },
+          [kind]: {packageName, kind, value: defaultValue, choiceLabelOverrides: options?.choiceLabelOverrides},
         },
       };
 
-      const newPackageSpecificDebug = mergeObject(packageSpecificDebug, newEntry, {
+      const newPackageSpecificDebug = foundry.utils.mergeObject(packageSpecificDebug, newEntry, {
         inplace: false,
         insertKeys: true,
         insertValues: true,
@@ -199,20 +199,20 @@ export class DevMode {
    * Sets CONFIG.compatibility value to match the value stored in settings
    */
   static setCompatibilityWarnings() {
-	const compatibilityWarnings = game.settings.get(this.MODULE_ID, this.SETTINGS.compatibilityWarnings);
-	if (isObjectEmpty(compatibilityWarnings) || !CONFIG.compatibility) return;
+    const compatibilityWarnings = game.settings.get(this.MODULE_ID, this.SETTINGS.compatibilityWarnings);
+    if (isObjectEmpty(compatibilityWarnings) || !CONFIG.compatibility) return;
 
     // set all compatibility values to match settings
     CONFIG.compatibility.mode = compatibilityWarnings.mode;
     CONFIG.compatibility.includePatterns = compatibilityWarnings.includePatterns
-	  ?.split(',')
-	  .filter(s => String(s))
-	  .map(s => new RegExp(s.trim()));
-	CONFIG.compatibility.excludePatterns = compatibilityWarnings.excludePatterns
-	  ?.split(',')
-	  .filter(s => String(s))
-	  .map(s => new RegExp(s.trim()));
+      ?.split(',')
+      .filter(s => String(s))
+      .map(s => new RegExp(s.trim()));
+    CONFIG.compatibility.excludePatterns = compatibilityWarnings.excludePatterns
+      ?.split(',')
+      .filter(s => String(s))
+      .map(s => new RegExp(s.trim()));
 
-	this.log(false, 'setCompatibilityWarnings', compatibilityWarnings);
+    this.log(false, 'setCompatibilityWarnings', compatibilityWarnings);
   }
 }

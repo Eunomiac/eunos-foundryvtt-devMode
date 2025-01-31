@@ -1,5 +1,5 @@
-import { DevMode } from './DevMode.mjs';
-import { DevModePerformance } from './DevModePerformance.mjs';
+import {DevMode} from './DevMode.mjs';
+import {DevModePerformance} from './DevModePerformance.mjs';
 
 export class DevModeConfig extends FormApplication {
   static get defaultOptions() {
@@ -158,7 +158,7 @@ export class DevModeConfig extends FormApplication {
           return acc;
         }
       },
-      { boolean: [], level: [] },
+      {boolean: [], level: []},
     );
 
     // Add DevMode to the end of the list
@@ -190,7 +190,7 @@ export class DevModeConfig extends FormApplication {
       autoOpenDocuments: this.autoOpenDocuments,
       documentsWithSheets: CONST.DOCUMENT_TYPES.filter(x => Object.values(CONFIG[x].sheetClasses)
         .find(sc => !foundry.utils.isObjectEmpty(sc)))
-        .reduce((types, type) => { types[type] = type; return types; }, {}),
+        .reduce((types, type) => {types[type] = type; return types;}, {}),
       compatibilityWarningsData,
     };
 
@@ -232,9 +232,9 @@ export class DevModeConfig extends FormApplication {
         const isDeleting = event.currentTarget?.dataset?.action === "deleteAutoOpen";
         const type = event.currentTarget.parentElement.querySelector('[name="autoOpen.type"]').value;
         const id = event.currentTarget.parentElement.querySelector('[name="autoOpen.id"]').value;
-        const element = { type, id };
+        const element = {type, id};
         let autoOpen = [...this.autoOpenDocuments];
-        if ( isDeleting ) {
+        if (isDeleting) {
           autoOpen = autoOpen.filter(x => !(x.type == element.type && x.id == element.id));
         }
         else autoOpen.push(element);
@@ -245,14 +245,14 @@ export class DevModeConfig extends FormApplication {
   }
 
   async _updateObject(ev, formData) {
-    const { packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings } = expandObject(formData);
+    const {packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings} = expandObject(formData);
 
     DevMode.log(false, {
       formData,
-      data: { packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings },
+      data: {packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings},
     });
 
-    const newPackageSpecificDebug = mergeObject(this.packageSpecificDebug, packageSpecificDebugFormData, {
+    const newPackageSpecificDebug = foundry.utils.mergeObject(this.packageSpecificDebug, packageSpecificDebugFormData, {
       inplace: false,
       insertKeys: true,
       insertValues: true,
@@ -260,7 +260,7 @@ export class DevModeConfig extends FormApplication {
       recursive: true,
     });
 
-    const newDebugOverrides = mergeObject(this.debugOverrides, debugOverrideFormData, {
+    const newDebugOverrides = foundry.utils.mergeObject(this.debugOverrides, debugOverrideFormData, {
       inplace: false,
       insertKeys: true,
       insertValues: true,
@@ -268,13 +268,13 @@ export class DevModeConfig extends FormApplication {
       recursive: true,
     });
 
-		const newCompatibilityWarnings = mergeObject(this.compatibilityWarnings, compatibilityWarnings, {
-			inplace: false,
-			insertKeys: true,
-			insertValues: true,
-			overwrite: true,
-			recursive: true,
-		});
+    const newCompatibilityWarnings = foundry.utils.mergeObject(this.compatibilityWarnings, compatibilityWarnings, {
+      inplace: false,
+      insertKeys: true,
+      insertValues: true,
+      overwrite: true,
+      recursive: true,
+    });
 
     DevMode.log(true, 'setting settings', {
       newPackageSpecificDebug,
