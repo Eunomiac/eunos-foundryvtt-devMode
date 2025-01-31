@@ -31,7 +31,7 @@ Empower developers with commonly sought-after QOL features.
 
 Module JSON:
 
-```
+```link
 https://github.com/Eunomiac/eunos-foundryvtt-devMode/releases/latest/download/module.json
 ```
 

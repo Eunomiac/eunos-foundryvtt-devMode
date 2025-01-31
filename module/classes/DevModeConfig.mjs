@@ -1,5 +1,5 @@
-import {DevMode} from './DevMode.mjs';
-import {DevModePerformance} from './DevModePerformance.mjs';
+import { DevMode } from './DevMode.mjs';
+import { DevModePerformance } from './DevModePerformance.mjs';
 
 export class DevModeConfig extends FormApplication {
   static get defaultOptions() {
@@ -36,7 +36,7 @@ export class DevModeConfig extends FormApplication {
   }
 
   get compatibilityWarnings() {
-    const settings = game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.compatibilityWarnings)
+    const settings = game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.compatibilityWarnings);
     return foundry.utils.isEmpty(settings) ? CONFIG.compatibility ?? {} : settings;
   }
 
@@ -158,7 +158,7 @@ export class DevModeConfig extends FormApplication {
           return acc;
         }
       },
-      {boolean: [], level: []},
+      { boolean: [], level: [] },
     );
 
     // Add DevMode to the end of the list
@@ -188,9 +188,12 @@ export class DevModeConfig extends FormApplication {
         return types;
       }, {}),
       autoOpenDocuments: this.autoOpenDocuments,
-      documentsWithSheets: CONST.DOCUMENT_TYPES.filter(x => Object.values(CONFIG[x].sheetClasses)
-        .find(sc => !foundry.utils.isEmpty(sc)))
-        .reduce((types, type) => {types[type] = type; return types;}, {}),
+      documentsWithSheets: CONST.DOCUMENT_TYPES.filter((x) =>
+        Object.values(CONFIG[x].sheetClasses).find((sc) => !foundry.utils.isEmpty(sc)),
+      ).reduce((types, type) => {
+        types[type] = type;
+        return types;
+      }, {}),
       compatibilityWarningsData,
     };
 
@@ -227,17 +230,19 @@ export class DevModeConfig extends FormApplication {
         }
       }
 
-      if (event.currentTarget?.dataset?.action === "addAutoOpen" || event.currentTarget?.dataset?.action === "deleteAutoOpen") {
+      if (
+        event.currentTarget?.dataset?.action === 'addAutoOpen' ||
+        event.currentTarget?.dataset?.action === 'deleteAutoOpen'
+      ) {
         event.preventDefault();
-        const isDeleting = event.currentTarget?.dataset?.action === "deleteAutoOpen";
+        const isDeleting = event.currentTarget?.dataset?.action === 'deleteAutoOpen';
         const type = event.currentTarget.parentElement.querySelector('[name="autoOpen.type"]').value;
         const id = event.currentTarget.parentElement.querySelector('[name="autoOpen.id"]').value;
-        const element = {type, id};
+        const element = { type, id };
         let autoOpen = [...this.autoOpenDocuments];
         if (isDeleting) {
-          autoOpen = autoOpen.filter(x => !(x.type == element.type && x.id == element.id));
-        }
-        else autoOpen.push(element);
+          autoOpen = autoOpen.filter((x) => !(x.type == element.type && x.id == element.id));
+        } else autoOpen.push(element);
         game.settings.set(DevMode.MODULE_ID, DevMode.SETTINGS.autoOpenDocuments, autoOpen);
         this.render();
       }
@@ -245,11 +250,12 @@ export class DevModeConfig extends FormApplication {
   }
 
   async _updateObject(ev, formData) {
-    const {packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings} = expandObject(formData);
+    const { packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings } =
+      expandObject(formData);
 
     DevMode.log(false, {
       formData,
-      data: {packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings},
+      data: { packageSpecificDebugFormData, debugOverrideFormData, overrideConfigDebug, compatibilityWarnings },
     });
 
     const newPackageSpecificDebug = foundry.utils.mergeObject(this.packageSpecificDebug, packageSpecificDebugFormData, {

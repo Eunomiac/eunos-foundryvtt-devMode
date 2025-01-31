@@ -3,11 +3,11 @@ import { DevMode } from '../classes/DevMode.mjs';
 // Default values to inject into arrays
 const injectKeys = {
   packs: {
-    private: false
+    private: false,
   },
   dependencies: {
-    type: "module"
-  }
+    type: 'module',
+  },
 };
 
 // Values to delete from arrays to compensate for diffObject problems
@@ -18,8 +18,8 @@ const cullKeys = {
 const deprecatedKeys = {
   // "systems" key deprecation has special handling.
   packs: {
-    entity: "type", // v9 deprecation (entity -> type), v10 incompatible
-  }
+    entity: 'type', // v9 deprecation (entity -> type), v10 incompatible
+  },
 };
 
 /**
@@ -32,7 +32,7 @@ function preScrubData(data, result) {
   if (data.systems) {
     data.system = data.systems;
     delete data.systems;
-    result.details.deprecations.systems = "system";
+    result.details.deprecations.systems = 'system';
   }
 }
 
@@ -46,36 +46,40 @@ function fetchData(file, current, comparer) {
   fetch(file, {
     method: 'GET',
     cache: 'no-cache',
-    redirect: 'manual'
+    redirect: 'manual',
   }).then(function (response) {
-    if (response.ok) response.json().then(data => {
-      const result = {
-        changed: false,
-        details: { diff: null, deprecations: {}},
-      };
-      preScrubData(data, result);
-      const cls = loadedPkg.constructor;
-      const fetchedPkg = new cls(data);
-      if (comparer) {
-        comparer(file, fetchedPkg, loadedPkg, result);
-      }
-      else {
-        // Use plain diffObject if no comparer is specified
-        const diff = basicPackageDiff(fetchedPkg, loadedPkg);
-        if (!foundry.utils.isEmpty(diff)) {
-          result.details = { diff };
-          result.changed = true;
+    if (response.ok)
+      response.json().then((data) => {
+        const result = {
+          changed: false,
+          details: { diff: null, deprecations: {} },
+        };
+        preScrubData(data, result);
+        const cls = loadedPkg.constructor;
+        const fetchedPkg = new cls(data);
+        if (comparer) {
+          comparer(file, fetchedPkg, loadedPkg, result);
+        } else {
+          // Use plain diffObject if no comparer is specified
+          const diff = basicPackageDiff(fetchedPkg, loadedPkg);
+          if (!foundry.utils.isEmpty(diff)) {
+            result.details = { diff };
+            result.changed = true;
+          }
         }
-      }
-      if (result.changed) {
-        ui.notifications?.warn(`${file} has changed`, { permanent: true });
-        console.warn(`DEV MODE | ${file} has changed:\n`, { current: loadedPkg, fetched: data, diff: result.details.diff });
-      }
-      if (result.deprecations) {
-        ui.notifications?.warn(`${file} has deprecated keys`, { permanent: true });
-        console.warn(`DEV MODE | ${file} has deprecated keys:\n`, result.details.deprecations);
-      }
-    })
+        if (result.changed) {
+          ui.notifications?.warn(`${file} has changed`, { permanent: true });
+          console.warn(`DEV MODE | ${file} has changed:\n`, {
+            current: loadedPkg,
+            fetched: data,
+            diff: result.details.diff,
+          });
+        }
+        if (result.deprecations) {
+          ui.notifications?.warn(`${file} has deprecated keys`, { permanent: true });
+          console.warn(`DEV MODE | ${file} has deprecated keys:\n`, result.details.deprecations);
+        }
+      });
   });
 }
 
@@ -126,11 +130,9 @@ function cullingComparer(file, fetchedPkg, loadedPkg, result = {}) {
   for (let [key, value] of Object.entries(diff)) {
     if (value instanceof Array) {
       const aDiff = diffObject(value, loadedPkg[key]);
-      if (foundry.utils.isEmpty(aDiff))
-        delete diff[key];
+      if (foundry.utils.isEmpty(aDiff)) delete diff[key];
     }
   }
-
   result.changed = !foundry.utils.isEmpty(diff);
   result.deprecations = !foundry.utils.isEmpty(deprecations);
   result.details = { diff, deprecations };
@@ -147,9 +149,9 @@ export function setupJSONDiff() {
 
   // Test modules
   if (game.settings.get(DevMode.MODULE_ID, DevMode.SETTINGS.jsonDiffModules)) {
-    game.modules.forEach(m => {
+    game.modules.forEach((m) => {
       if (!m.active) return;
       fetchData(`modules/${m.id}/module.json`, m.data, cullingComparer);
-    })
+    });
   }
 }

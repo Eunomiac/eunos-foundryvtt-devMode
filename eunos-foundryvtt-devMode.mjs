@@ -1,12 +1,15 @@
-import {DevMode} from './module/classes/DevMode.mjs';
-import {DevModeConfig} from './module/classes/DevModeConfig.mjs';
-import {DevModeSettings} from './module/classes/DevModeSettings.mjs';
+import { DevMode } from './module/classes/DevMode.mjs';
+import { DevModeConfig } from './module/classes/DevModeConfig.mjs';
+import { DevModeSettings } from './module/classes/DevModeSettings.mjs';
 import setupApplicationHeaderPrintButton from './module/hooks/app-header-buttons.mjs';
 import setupDevModeAnchor from './module/hooks/dev-mode-anchor.mjs';
-import {inspectSystemTemplate} from './module/hooks/inspect-template.mjs';
-import {setupJSONDiff} from './module/hooks/json-changes.mjs';
-import autoOpenDocuments from "./module/hooks/auto-open-documents.mjs";
-import {setupHideNotificationsSettings, setupHideNotificationsProxy} from "./module/hooks/hide-notifications-proxy.mjs";
+// import { inspectSystemTemplate } from './module/hooks/inspect-template.mjs';
+import { setupJSONDiff } from './module/hooks/json-changes.mjs';
+import autoOpenDocuments from './module/hooks/auto-open-documents.mjs';
+import {
+  setupHideNotificationsSettings,
+  setupHideNotificationsProxy,
+} from './module/hooks/hide-notifications-proxy.mjs';
 
 Handlebars.registerHelper('dev-concat', (...args) => {
   DevMode.log(false, args);
@@ -61,6 +64,6 @@ Hooks.on('ready', () => {
   setupApplicationHeaderPrintButton();
 
   // If Vueport is enabled, it needs a little bit to be ready to render a sheet
-  if (game.modules.get("vueport")?.active) setTimeout(autoOpenDocuments, 1000);
+  if (game.modules.get('vueport')?.active) setTimeout(autoOpenDocuments, 1000);
   else autoOpenDocuments();
 });

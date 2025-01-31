@@ -1,4 +1,4 @@
-import {DevModePerformance} from './DevModePerformance.mjs';
+import { DevModePerformance } from './DevModePerformance.mjs';
 
 export class DevMode {
   static API = {
@@ -32,7 +32,7 @@ export class DevMode {
     // jsonDiffSystem: 'json-diff-system',
     // jsonDiffModules: 'json-diff-modules',
     // inspectTemplate: 'inspect-system-template',
-    autoOpenDocuments: 'auto-open-documents'
+    autoOpenDocuments: 'auto-open-documents',
   };
 
   static TEMPLATES = {
@@ -141,7 +141,7 @@ export class DevMode {
 
       const newEntry = {
         [packageName]: {
-          [kind]: {packageName, kind, value: defaultValue, choiceLabelOverrides: options?.choiceLabelOverrides},
+          [kind]: { packageName, kind, value: defaultValue, choiceLabelOverrides: options?.choiceLabelOverrides },
         },
       };
 
@@ -204,12 +204,12 @@ export class DevMode {
     CONFIG.compatibility.mode = compatibilityWarnings.mode;
     CONFIG.compatibility.includePatterns = compatibilityWarnings.includePatterns
       ?.split(',')
-      .filter(s => String(s))
-      .map(s => new RegExp(s.trim()));
+      .filter((s) => String(s))
+      .map((s) => new RegExp(s.trim()));
     CONFIG.compatibility.excludePatterns = compatibilityWarnings.excludePatterns
       ?.split(',')
-      .filter(s => String(s))
-      .map(s => new RegExp(s.trim()));
+      .filter((s) => String(s))
+      .map((s) => new RegExp(s.trim()));
 
     this.log(false, 'setCompatibilityWarnings', compatibilityWarnings);
   }

@@ -104,8 +104,8 @@ export class DevModeSettings {
     game.settings.register(DevMode.MODULE_ID, DevMode.SETTINGS.compatibilityWarnings, {
       default: {
         mode: CONST.COMPATIBILITY_MODES?.WARNING ?? 1,
-        includePatterns: "",
-        excludePatterns: "",
+        includePatterns: '',
+        excludePatterns: '',
       },
       type: Object,
       scope: 'client',

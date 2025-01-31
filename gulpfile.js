@@ -31,7 +31,7 @@ function buildStyles() {
  * Watch for changes for each build step
  */
 function buildWatch() {
-  gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, {ignoreInitial: false}, buildStyles);
+  gulp.watch(`${stylesDirectory}/**/*.${stylesExtension}`, { ignoreInitial: false }, buildStyles);
 }
 
 /********************/

@@ -18,7 +18,7 @@ export class DevModePerformance {
   }
 
   static actorCRUDTest = async ({ type, iterations = 1000 } = {}) => {
-    if (!(type in game.system.documentTypes.Actor)) return console.error(type, "is invalid actor type");
+    if (!(type in game.system.documentTypes.Actor)) return console.error(type, 'is invalid actor type');
     console.log(`Running CRUD test on "${type}" type with ${iterations} iterations`);
     const debugConfig = { ...CONFIG.debug };
     this.resetDebug();
@@ -28,12 +28,19 @@ export class DevModePerformance {
       const created = await Actor.create({ name: `${x}`, type });
       await created.update({ name: 'Actor' + x });
       await created.delete();
-      if (x % 10 == 0) SceneNavigation.displayProgressBar({ label: 'Test Progress', pct: Math.roundDecimals((x / iterations) * 100, 1) });
+      if (x % 10 == 0)
+        SceneNavigation.displayProgressBar({
+          label: 'Test Progress',
+          pct: Math.roundDecimals((x / iterations) * 100, 1),
+        });
     }
 
     const end = performance.now();
 
-    const output = `Total: ${Math.roundDecimals(end - now, 3)}ms. Per: ${Math.roundDecimals((end - now) / iterations, 3)}ms.`;
+    const output = `Total: ${Math.roundDecimals(end - now, 3)}ms. Per: ${Math.roundDecimals(
+      (end - now) / iterations,
+      3,
+    )}ms.`;
 
     // reset config debug
     CONFIG.debug = debugConfig;
