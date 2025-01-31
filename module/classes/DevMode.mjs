@@ -16,7 +16,7 @@ export class DevMode {
     ALL: 5,
   };
 
-  static MODULE_ID = '_dev-mode';
+  static MODULE_ID = '_eunos-dev-mode';
   static MODULE_ABBREV = 'DEV';
 
   static SETTINGS = {
